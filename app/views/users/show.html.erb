@@ -1,0 +1,87 @@
+<%= stylesheet_link_tag "users", :media => "all" %>
+
+<h1>ユーザーマイページ</h1>
+
+<%= render 'relationships/follow_button', user: @user %>
+
+<div class="base-info">
+  <div class="user-info">
+    <%= image_tag @user.image_url, size: "120x120" ,class:"topimage" if @user.image? %>
+  <h1><%= @user.name %></h1>
+  </div>
+  <p>メールアドレス : <%= @user.email %></p>
+  <p>プロフィール : <%= @user.profile %></p>
+</div>
+
+<table>
+  <tr>
+    <th>＼</th>
+    <th>長所</th>
+    <th>短所</th>
+    <th>性格</th>
+  </tr>
+  <tr>
+    <td>いいね</td>
+    <td><%= @user.depth1 %></td>
+    <td><%= @user.depth2 %></td>
+    <td><%= @user.depth3 %></td>
+  </tr>
+  <tr>
+    <td>もうすこし</td>
+    <td><%= @user.depth4 %></td>
+    <td><%= @user.depth5 %></td>
+    <td><%= @user.depth6 %></td>
+  </tr>
+  <tr>
+    <td>がんばろう</td>
+    <td><%= @user.depth7 %></td>
+    <td><%= @user.depth8 %></td>
+    <td><%= @user.depth9 %></td>
+  </tr>
+  <tr>
+    <td>だめ</td>
+    <td><%= @user.depth10 %></td>
+    <td><%= @user.depth11 %></td>
+    <td><%= @user.depth12 %></td>
+</tr>
+</table>
+
+
+
+<% if current_user.id == @user.id %>
+  <%= link_to "編集する", edit_user_registration_path %>
+    <% else %>
+
+    <% if @isRoom == true %>
+      <p><a href="/rooms/<%= @roomId %>">チャットへ</a>
+    <% else %>
+      <%= form_for @room do |f| %>
+        <%= fields_for @entry do |e| %>
+          <%= e.hidden_field :user_id, :value=> @user.id %>
+      <% end %>
+      <%= f.submit "チャットを始める" %>
+    <% end %>
+<% end %>
+
+<% end %>
+
+<%= link_to "ユーザー一覧へ", users_path %>
+
+<h2>ユーザーの投稿一覧</h2>
+<div class="container">
+  <div class="row">
+    <% @user.pictures.each do |t| %>
+      <%= render partial: "pictures/picturecontent", locals: { t: t } %>
+    <% end %>
+  </div>
+</div>
+
+
+<h2>ユーザーがいいねした投稿一覧</h2>
+<div class="container">
+  <div class="row">
+    <% @user.liked_pictures.each do |t| %>
+      <%= render partial: "pictures/picturecontent", locals: { t: t } %>
+    <% end %>
+  </div>
+</div>

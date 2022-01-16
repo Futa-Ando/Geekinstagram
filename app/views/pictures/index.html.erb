@@ -1,0 +1,77 @@
+<%= stylesheet_link_tag "pictures", :media => "all" %>
+
+<div class="picturetop">
+  <%= link_to "最新投稿順", pictures_path %>
+  <%= link_to "いいね数順", picture_liked_path %>
+  <%= link_to "閲覧数順", picture_viewed_path %>
+</div>
+
+<h3>最新投稿順</h3>
+
+
+<div data-toggle="modal" data-target=".bd-example-modal-sm">オプション</div>
+
+<div class="modal fade bd-example-modal-sm" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-sm">
+    <div class="modal-content">
+
+      <div class="search">
+          <%= form_tag(pictures_path, method: :get) do %>
+              <%= text_field_tag :search %>
+              <br/>
+              <%= button_tag :type => "submit", :class =>"btn btn-default btn-s-md" do %>
+                <i class="fa fa-search"></i>投稿検索
+              <% end %>
+          <% end %>
+      </div>
+
+      <div>
+          <%= form_tag(pictures_path, method: :get) do %>
+              <% Tag.all.each do |t| %>
+                  <%= check_box :tag_ids, t.tag_name %><%= t.tag_name %>
+                  <%= link_to "タグ削除", tag_path(t.id), method: :delete %>
+                  <br/>
+              <% end %>
+              <%= button_tag :type => "submit", :class =>"btn btn-default btn-s-md" do %>
+                <i class="fa fa-search"></i>タグで検索
+              <% end %>
+          <% end %>
+      </div>
+
+      <%= form_tag(pictures_path, method: :get) do %>
+          <%= text_field_tag :tag %>
+          <%= submit_tag 'タグを追加' %>
+      <% end %>
+
+    </div>
+  </div>
+</div>
+
+<div class="container">
+  <div class="row">
+    <% @pictures.each do |t| %>
+      <%= render partial: "picturecontent", locals: { t: t } %>
+    <% end %>
+  </div>
+</div>
+
+<div class="modal fade modal-wrapper" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">新規投稿フォーム</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+
+            <%= render partial: "picturenew", locals: { picture: @picture } %>
+
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-dismiss="modal">閉じる</button>
+            </div>
+        </div>
+    </div>
+</div>

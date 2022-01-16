@@ -1,0 +1,64 @@
+// Place all the styles related to the hello controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: https://sass-lang.com/
+
+* {
+    margin: 0;
+    padding: 0;
+}
+
+.main-container {
+    background-image: url("../images/tunapaha.jpg");
+    height: 200px;
+    background-size: cover;
+}
+
+.toplogo{
+    height: 90px;
+    width: 160px;
+}
+
+.block1{
+    background-color: bisque;
+    height: 100px;
+    wideth:100%;
+}
+
+.block2{
+    background-color: burlywood;
+}
+
+.inline3{
+    background-color: chocolate;
+}
+
+
+.inline1{
+    background-color: bisque;
+    display: inline-block;
+    height: 200px;
+}
+
+.inline2{
+    background-color: burlywood;
+}
+
+.block3{
+    background-color: chocolate;
+}
+
+.testborder{
+    background-color: cornflowerblue;
+    border-radius: 50%;
+    width:300px;
+    height: 300px;
+    margin-botoom: 100px;
+}
+
+.center2{
+    margin:0 auto;
+}
+
+.slide{
+    width: 800px;
+}

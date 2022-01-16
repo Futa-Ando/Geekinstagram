@@ -1,0 +1,42 @@
+<%= stylesheet_link_tag "pictures", :media => "all" %>
+
+<%= link_to "最新投稿順", pictures_path %>
+<%= link_to "いいね数順", picture_commented_path %>
+<%= link_to "閲覧数順", picture_viewed_path %>
+<%= link_to "コメント数順", picture_commented_path %>
+
+<h3>コメント数順</h3>
+
+<br>
+<%= page_entries_info @commented_pictures %>
+
+<div class="container">
+    <div class="row">
+        <% @commented_pictures.each do |t| %>
+            <%= render partial: "picturecontent", locals: { t: t } %>
+        <% end %>
+    </div>
+</div>
+
+<%= paginate @commented_pictures %>
+
+<div class="modal fade modal-wrapper" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">新規投稿フォーム</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+
+            <%= render partial: "picturenew", locals: { picture: @picture } %>
+
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">閉じる</button>
+            </div>
+        </div>
+    </div>
+</div>

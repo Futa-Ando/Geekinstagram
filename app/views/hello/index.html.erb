@@ -1,0 +1,45 @@
+<%= stylesheet_link_tag "hello", :media => "all" %>
+
+<h1>まる。の実験台へようこそ</h1>
+
+<%= link_to 'Java実験台', hello_javatest_path %>
+<%= link_to 'HTML実験台', hello_htmltest_path %>
+<%= link_to "マップ", maps_path %>
+
+<div class="main-container">
+    <h1>背景画像の適用</h1>
+    <p>これは私のポートフォリオサイトです</p>
+    <image src="../../../assets/tunapaha.jpg" class="toplogo">
+    <image src="../../../assets/mikoto.jpg" class="toplogo">
+    <image src="../../../assets/tutimikado.jpg" class="toplogo">
+</div>
+
+
+Previous
+NextCopy
+<div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">
+    <div class="carousel-indicators">
+        <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+        <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1" aria-label="Slide 2"></button>
+        <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2" aria-label="Slide 3"></button>
+    </div>
+    <div class="carousel-inner">
+        <div class="carousel-item active">
+        <img src="../../../assets/tutimikado.jpg" class="d-block w-100" alt="...">
+        </div>
+        <div class="carousel-item">
+        <img src="../../../assets/mikoto.jpg" class="d-block w-100" alt="...">
+        </div>
+        <div class="carousel-item">
+        <img src="../../../assets/tunapaha.jpg" class="d-block w-100" alt="...">
+        </div>
+    </div>
+    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Previous</span>
+    </button>
+    <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Next</span>
+    </button>
+</div>

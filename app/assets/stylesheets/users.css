@@ -1,0 +1,215 @@
+.post-container {
+    margin: 50px auto;
+    width: 50%;
+    border: solid #ffbfff;
+    text-align: center;
+    background-color: #fff4fe8a;
+  }
+
+  .title {
+    font-size: 32px;
+    font-weight: bold;
+    margin-bottom: 50px;
+  }
+
+  .field{
+    background-color: #f8d5f58a;
+      width: 80%;
+      margin: 20px 10%;
+      border-bottom: solid;
+      border-color: violet;
+  }
+
+  input[type="text"] {
+    border: none;
+    width: 80%;
+    background-color: #f8d5f58a;
+  }
+
+  input[type="email"]{
+    border: none;
+    width: 80%;
+    background-color: #f8d5f58a;
+  }
+  
+  input[type="password"] {
+    border: none;
+    width: 80%;
+    background-color: #f8d5f58a;
+  }
+
+  input[type="submit"] {
+    width: 200px;
+    font-size: 20px;
+    margin-top: 50px;
+    margin-bottom: 30px;
+  }
+
+  .base-info{
+    margin: 50px auto;
+    width: 50%;
+    border: solid #d3def1;
+    border-radius: 10px;
+    text-align: center;
+    background-color: #d3def1;
+  }
+
+  .topimage{
+  border-radius: 50%;
+  width: 100px;  
+  height: 100px;
+  object-fit: cover;
+  }
+
+  .picture-container{
+    border: dotted;
+    border-radius: 10px;
+    border-color: coral;
+    padding-top: 10px;
+    background-color: rgba(248, 211, 233, 0.568);
+    margin: 5px;
+  }
+
+  .lecture_form{
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    width: 300px;
+    margin: 30px;
+  }
+  .name_field{
+    width: 200px;
+    margin-bottom: 30px;
+  }
+
+/*以下新規投稿ページの星用のCSS*/
+
+  .post_form{
+    display: flex;
+    flex-direction: row-reverse;
+    justify-content: flex-end;
+  }
+  .post_form input[type='radio']{
+    display: none;
+  }
+  .post_form label{
+    position: relative;
+    padding: 10px 10px 0;
+    color: gray;
+    cursor: pointer;
+    font-size: 30px; /*星の大きさを変更するときはここ*/
+  }
+  .post_form label .text{
+    position: absolute;
+    left: 0;
+    top: 0;
+    right: 0;
+    text-align: center;
+    font-size: 9px; /*星の上の説明書きの大きさを変更するときはここ*/
+    color: gray;
+  }
+  .post_form label:hover,
+  .post_form label:hover ~ label,
+  .post_form input[type='radio']:checked ~ label{
+    color: #ffcc00;
+  }
+
+
+/*以下一覧ページの星用のCSS*/
+
+  .star-rating {
+    position: relative;
+    display: inline-block;
+    width: 5em;
+    height: 1em;
+    font-size: 25px;
+  }
+  .star-rating-front {
+    display: inline-block;
+    position: absolute;
+    top: 0;
+    left: 0;
+    overflow: hidden;
+    color: #ffcc33;
+  }
+  .star-rating-back {
+    display: inline-block;
+    color: #ccc;
+  }
+
+  .contributer{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    margin-bottom: 10px;
+  }
+
+  .contributername{
+    margin-left: 15px;
+    text-decoration: none;
+  }
+
+  .image-modal{
+    padding: 15px;
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+  }
+
+  .modal-body{
+    margin-left: 8px;
+  }
+
+  .modal-link{
+    margin-top: 15px;
+  }
+
+  table{
+    width: 100%;
+    border-collapse:separate;
+    border-spacing: 0;
+  }
+  
+  table th:first-child{
+    border-radius: 5px 0 0 0;
+  }
+  
+  table th:last-child{
+    border-radius: 0 5px 0 0;
+    border-right: 1px solid #3c6690;
+  }
+  
+  table th{
+    text-align: center;
+    color:white;
+    background: linear-gradient(#829ebc,#225588);
+    border-left: 1px solid #3c6690;
+    border-top: 1px solid #3c6690;
+    border-bottom: 1px solid #3c6690;
+    box-shadow: 0px 1px 1px rgba(255,255,255,0.3) inset;
+    width: 25%;
+    padding: 10px 0;
+  }
+  
+  table td{
+    text-align: center;
+    border-left: 1px solid #a8b7c5;
+    border-bottom: 1px solid #a8b7c5;
+    border-top:none;
+    box-shadow: 0px -3px 5px 1px #eee inset;
+    width: 25%;
+    padding: 10px 0;
+  }
+  
+  table td:last-child{
+    border-right: 1px solid #a8b7c5;
+  }
+  
+  table tr:last-child td:first-child {
+    border-radius: 0 0 0 5px;
+  }
+  
+  table tr:last-child td:last-child {
+    border-radius: 0 0 5px 0;
+  }
+  

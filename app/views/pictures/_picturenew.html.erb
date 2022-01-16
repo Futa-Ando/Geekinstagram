@@ -1,0 +1,101 @@
+<%= stylesheet_link_tag 'pictures', :media => "all" %>
+
+<div class="post-container">
+    <%= form_for(picture, :url => { controller:'pictures', action:'create'})do |f| %>
+        <%= f.label :料理名 %>
+        <br>
+        <%= f.text_field :title,size: 40 %>
+
+        <br/>
+
+        <%= f.label :画像説明 %>
+        <br>
+        <%= f.text_area :body,size:"41x3" %>
+
+    <div class="field">
+        <%= f.label :画像 %>
+        <%= f.file_field :image %>
+    </div>
+
+    <div id="new-image"></div>
+
+    <div class="field">
+        <%= f.label :動画 %>
+        <%= f.file_field :video %>
+    </div>
+
+    <%= f.label :動画 %>
+    <br>
+    <%= f.text_field :youtube_url,size: 40 %>
+
+    <div id="box2">
+        <div class='form-group'>
+            <%= f.collection_check_boxes(:tag_ids, Tag.all, :id, :tag_name) do |tag| %>
+                <div class='form-check'>
+                    <%= tag.label class: 'form-check-label' do %>
+                        <%= tag.check_box class: 'form-check-input' %>
+                        <%= tag.text %>
+                    <% end %>
+                </div>
+            <% end %>
+        </div>
+
+            <h5>料理の難易度：</h5>
+        <div class="post_form">
+            <%= f.radio_button :level,  5 ,id: 'star6'%>
+            <label for="star6"><span class="text">難しい</span>★</label>
+
+            <%= f.radio_button :level,  4 ,id: 'star7'%>
+            <label for="star7"><span class="text">やや難しい</span>★</label>
+
+            <%= f.radio_button :level, 3 ,id: 'star8'%>
+            <label for="star8"><span class="text">普通</span>★</label>
+
+            <%= f.radio_button :level , 2 ,id: 'star9'%>
+            <label for="star9"><span class="text">やや簡単</span>★</label>
+
+            <%= f.radio_button :level , 1 ,id: 'star10'%>
+            <label for="star10"><span class="text">簡単</span>★</label>
+        </div>
+    </div>
+
+    <div id="btn" onclick="clickBtn1();">
+        <i class="fas fa-angle-double-down"></i>
+    </div>
+
+    <div id="btn2" onclick="clickBtn1();">
+        <i class="fas fa-angle-double-up"></i>
+    </div>
+
+    <script>
+    document.getElementById("box2").style.display ="none";
+    document.getElementById("btn").style.display ="block";
+    document.getElementById("btn2").style.display ="none";
+
+    function clickBtn1(){
+        const p1 = document.getElementById("box2");
+        const p2 = document.getElementById("btn");
+        const p3 = document.getElementById("btn2");
+
+        if(box2.style.display=="block"){
+            // noneで非表示
+            p1.style.display ="none";
+            p2.style.display ="block";
+            p3.style.display ="none";
+        }else{
+            // blockで表示
+            p1.style.display ="block";
+            p2.style.display ="none";
+            p3.style.display ="block";
+        }
+    }
+    </script>
+
+    <br>
+
+    <div lass="sousinn">
+        <%= f.submit "送信"%>
+    </div>
+
+    <% end %>
+</div>
