@@ -1,8 +1,7 @@
 Rails.application.routes.draw do
 
   root 'hello#index'
-  get 'hello/javatest' => 'hello#javatest'
-  get 'hello/htmltest' => 'hello#htmltest'
+  get 'hello/detail' => 'hello#detail'
   
   resources :maps
   resources :tags, :only => [:destroy]

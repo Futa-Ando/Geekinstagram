@@ -79,40 +79,35 @@
     <br>
   <% end %>
 
-  <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
-    コメントする
-  </button>
-
   <% if user_signed_in? %>
     <%= form_with(model: [@picture, @comment], local: true) do |f| %>
-    
-      <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog" role="document">
-          <div class="modal-content">
-            <div class="modal-header">
-              <h5 class="modal-title" id="exampleModalLabel">コメントフォーム</h5>
-              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
-              </button>
-            </div>
-            <div class="modal-body">
-                
-              <%= f.text_area :content,size:"54x3" %>
 
-            </div>
-            <div class="modal-footer">
-              <%= f.label :コメント画像 %>
-              <%= f.file_field :image %>  
-              <%= button_tag type: "submit" do %>
-                <i class="far fa-comments"></i> コメントする
-              <% end %>
-              <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-            </div>
-          </div>
-        </div>
+      <div class="modal-body">
+          
+        <%= f.text_area :content,size:"54x3" %>
+
       </div>
+      <div class="modal-footer">
+        <%= f.label :コメント画像 %>
+        <%= f.file_field :image %>  
+        <%= button_tag type: "submit" do %>
+          <i class="far fa-comments"></i> コメントする
+        <% end %>
 
     <% end %>
   <% end %>
 
 </div>
+
+<div class="kinou-detail">
+    <h2>このページに実装されている機能</h2>
+    <div class="nakami">
+        <h5>①コメントの詳細を表示する</h5>
+        <p>
+        この機能は<b>教材３－１３「詳細ページを表示しよう」</b>を参考に実装します。
+        教材を参考に自力で実装してみてください。
+        しかし、難しい点がいくつかあるため、コメントの詳細ページ表示を実装する記事を作ったため、そちらをご参照ください。
+        記事は、<a href="https://qiita.com/Fu990628/items/ac017d8301d221f342fa">こちら</a>になります。
+        </p>
+    </div>
+<div>

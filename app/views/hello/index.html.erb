@@ -1,45 +1,24 @@
 <%= stylesheet_link_tag "hello", :media => "all" %>
 
-<h1>まる。の実験台へようこそ</h1>
+<h1>Geek受講生向け機能紹介サイト</h1>
 
-<%= link_to 'Java実験台', hello_javatest_path %>
-<%= link_to 'HTML実験台', hello_htmltest_path %>
+<%= link_to 'このサイトの使い方', hello_detail_path %>
 <%= link_to "マップ", maps_path %>
 
-<div class="main-container">
-    <h1>背景画像の適用</h1>
-    <p>これは私のポートフォリオサイトです</p>
-    <image src="../../../assets/tunapaha.jpg" class="toplogo">
-    <image src="../../../assets/mikoto.jpg" class="toplogo">
-    <image src="../../../assets/tutimikado.jpg" class="toplogo">
+<div class="slider">
+    <div class="slider__content"><img src="../../../assets/tunapaha.jpg"  alt="slider_image1" class="slider__img"></div>
+    <div class="slider__content"><img src="../../../assets/mikoto.jpg" alt="slider_image2" class="slider__img"></div>
+    <div class="slider__content"><img src="../../../assets/tutimikado.jpg"  alt="slider_image3" class="slider__img"></div>
 </div>
 
-
-Previous
-NextCopy
-<div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">
-    <div class="carousel-indicators">
-        <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
-        <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1" aria-label="Slide 2"></button>
-        <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2" aria-label="Slide 3"></button>
+<div class="kinou-detail">
+    <h2>このページに実装されている機能</h2>
+    <div class="nakami">
+        <h5>①写真が自動的にスライドされながら表示される</h5>
+        <p>
+        この機能は<b>カルーセル（Carousel）</b>と呼ばれています。
+        「HTML CSS カルーセル」などと検索すると実装するための記事がたくさん出てきます。
+        ちなみに私が利用した記事は<a href="https://dubdesign.net/download/html-css/htmlcss-slider/">これ</a>です。
+        </p>
     </div>
-    <div class="carousel-inner">
-        <div class="carousel-item active">
-        <img src="../../../assets/tutimikado.jpg" class="d-block w-100" alt="...">
-        </div>
-        <div class="carousel-item">
-        <img src="../../../assets/mikoto.jpg" class="d-block w-100" alt="...">
-        </div>
-        <div class="carousel-item">
-        <img src="../../../assets/tunapaha.jpg" class="d-block w-100" alt="...">
-        </div>
-    </div>
-    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
-        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-        <span class="visually-hidden">Previous</span>
-    </button>
-    <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
-        <span class="carousel-control-next-icon" aria-hidden="true"></span>
-        <span class="visually-hidden">Next</span>
-    </button>
-</div>
+<div>

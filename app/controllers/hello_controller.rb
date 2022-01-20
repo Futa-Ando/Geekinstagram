@@ -3,10 +3,7 @@ class HelloController < ApplicationController
     def index
     end
 
-    def javatest
-    end
-    
-    def htmltest
+    def detail
     end
 
 end
