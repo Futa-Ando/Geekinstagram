@@ -7,9 +7,6 @@
 
 <h3>コメント数順</h3>
 
-<br>
-<%= page_entries_info @commented_pictures %>
-
 <div class="container">
     <div class="row">
         <% @commented_pictures.each do |t| %>
@@ -17,8 +14,6 @@
         <% end %>
     </div>
 </div>
-
-<%= paginate @commented_pictures %>
 
 <div class="modal fade modal-wrapper" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
@@ -34,9 +29,11 @@
             <%= render partial: "picturenew", locals: { picture: @picture } %>
 
             </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">閉じる</button>
-            </div>
+        <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">閉じる</button>
+        </div>
         </div>
     </div>
 </div>
+
+<%= render partial: "kinou", locals: { picture: @picture } %>

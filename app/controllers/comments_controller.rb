@@ -6,6 +6,7 @@ class CommentsController < ApplicationController
       comment = picture.comments.build(comment_params)
       comment.user_id = current_user.id
       if comment.save
+        picture.create_notification_comment!(current_user, comment.id)
         flash[:success] = "コメントしました"
         redirect_back(fallback_location: root_path)
       else

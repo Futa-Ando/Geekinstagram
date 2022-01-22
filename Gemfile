@@ -69,6 +69,7 @@ gem 'jquery-rails'
 gem 'bootstrap', '~> 4.3.1'
 gem 'geocoder'
 gem 'simple_calendar', '~> 2.0'
+gem 'slim-rails'
 
 group :production do
   gem 'pg'

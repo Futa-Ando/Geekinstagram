@@ -39,6 +39,13 @@ class PicturesController < ApplicationController
         @comment = Comment.new
     end
 
+    def viewed
+      @commented_pictures = Picture.find(Comment.group(:picture_id).order('count(picture_id) desc').pluck(:picture_id))
+      @commented_pictures = @commented_pictures.page(params[:page]).per(3)
+      @picture = Picture.new
+      @comment = Comment.new
+  end
+
     def create
         picture = Picture.new(picture_params)
         picture.user_id = current_user.id
