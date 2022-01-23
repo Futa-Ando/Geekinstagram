@@ -1,0 +1,11 @@
+<%= stylesheet_link_tag "users", :media => "all" %>
+<%= stylesheet_link_tag "application", :media => "all" %>
+
+<h2>ユーザーの投稿一覧</h2>
+<div class="container">
+    <div class="row">
+        <% @user.pictures.each do |t| %>
+        <%= render partial: "pictures/picturecontent", locals: { t: t } %>
+        <% end %>
+    </div>
+</div>

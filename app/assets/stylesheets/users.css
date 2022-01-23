@@ -171,3 +171,10 @@
     flex-wrap: wrap;
     justify-content: space-around;
   }
+
+  .followman{
+    margin-left: 5%;
+    padding: 15px;
+    border-radius: 25px;
+    border: #d3def1 solid;
+  }

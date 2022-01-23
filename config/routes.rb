@@ -17,6 +17,8 @@ Rails.application.routes.draw do
   get 'user/:id/picture' => 'users#picture', as: 'user_picture'
   get 'user/:id/like_picture' => 'users#like_picture', as: 'user_like_picture'
   get 'user/:id/favorite_picture' => 'users#favorite_picture', as: 'user_favorite_picture'
+  get 'user/:id/following' => 'users#following', as: 'user_following'
+  get 'user/:id/follower' => 'users#follower', as: 'user_follower'
   resources :relationships, only: [:create, :destroy]
   resources :notifications, only: [:index, :update]
   resources :messages, :only => [:create]

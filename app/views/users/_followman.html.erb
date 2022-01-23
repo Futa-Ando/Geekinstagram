@@ -1,0 +1,13 @@
+<div class="col-xs-6 col-sm-4 col-md-3">
+    <div class="followman">
+        <div class="contributer">
+            <%= link_to user_path(t.id) do %>
+                <%= image_tag t.image_url, size: "60x60" ,class:"topimage" if t.image? %>
+            <% end %>
+            <%= link_to user_path(t.id) do %>
+                <h3 class="contributername" ><%= t.name %></h3>
+            <% end %>
+        </div>
+        <%= render 'relationships/follow_button', user: t %>
+    </div>
+</div>

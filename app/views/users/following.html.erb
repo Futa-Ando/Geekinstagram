@@ -1,0 +1,10 @@
+<%= stylesheet_link_tag "users", :media => "all" %>
+
+<h2>フォロー</h2>
+<div class="container">
+    <div class="row">
+        <% @user.followings.each do |following| %>
+            <%= render partial: "users/followman", locals: { t: following } %>
+        <% end %>
+    </div>
+</div>

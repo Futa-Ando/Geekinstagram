@@ -12,6 +12,16 @@
   </div>
   <p>メールアドレス : <%= @user.email %></p>
   <p>プロフィール : <%= @user.profile %></p>
+  <%= link_to user_following_path(id: @user.id) do %>
+    <span><%= @user.followings.count %>フォロー</span>
+  <% end %>
+  <%= link_to user_follower_path(id: @user.id) do %>
+    <span><%= @user.followers.count %>フォロワー</span>
+  <% end %>
+  <br/>
+  <%= link_to "ユーザーの投稿", user_picture_path(id: @user.id) %>
+  <%= link_to "いいねした投稿", user_like_picture_path(id: @user.id) %>
+  <%= link_to "フォロワーの投稿", user_favorite_picture_path(id: @user.id) %>
 </div>
 
 <table>
@@ -67,25 +77,6 @@
 <% end %>
 
 <%= link_to "ユーザー一覧へ", users_path %>
-
-<h2>ユーザーの投稿一覧</h2>
-<div class="container">
-  <div class="row">
-    <% @user.pictures.each do |t| %>
-      <%= render partial: "pictures/picturecontent", locals: { t: t } %>
-    <% end %>
-  </div>
-</div>
-
-<h3>いいねした投稿</h3>
-<div class="container">
-  <div class="row">
-    <% @likes.each do |t| %>
-      <%= render partial: "pictures/likepics", locals: { t: t } %>
-    <% end %>
-  </div>
-</div>
-
 
 <div class="kinou-detail">
     <h2>このページに実装されている機能</h2>

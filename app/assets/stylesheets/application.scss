@@ -202,3 +202,15 @@
   .center{
     text-align: center;
   }
+
+  .contributer{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    margin-bottom: 10px;
+  }
+
+  .contributername{
+    margin-left: 15px;
+    text-decoration: none;
+  }

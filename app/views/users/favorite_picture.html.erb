@@ -1,0 +1,13 @@
+<%= stylesheet_link_tag "users", :media => "all" %>
+<%= stylesheet_link_tag "application", :media => "all" %>
+
+<h3>フォローしたユーザーの投稿</h3>
+<div class="container">
+    <div class="row">
+        <% @user.followings.each do |following| %>
+            <% following.pictures.each do |t| %>
+                <%= render partial: "pictures/picturecontent", locals: { t: t } %>
+            <% end %>
+        <% end %>
+    </div>
+</div>
