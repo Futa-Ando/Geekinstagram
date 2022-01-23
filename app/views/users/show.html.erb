@@ -19,8 +19,12 @@
     <span><%= @user.followers.count %>フォロワー</span>
   <% end %>
   <br/>
-  <%= link_to "ユーザーの投稿", user_picture_path(id: @user.id) %>
-  <%= link_to "いいねした投稿", user_like_picture_path(id: @user.id) %>
+  <%= link_to user_picture_path(id: @user.id) do %>
+    <span>投稿数：<%= @user.pictures.count %></span>
+  <% end %>
+  <%= link_to user_like_picture_path(id: @user.id) do %>
+    <span>いいね数：<%= @user.likes.count %></span>
+  <% end %>
   <%= link_to "フォロワーの投稿", user_favorite_picture_path(id: @user.id) %>
 </div>
 
