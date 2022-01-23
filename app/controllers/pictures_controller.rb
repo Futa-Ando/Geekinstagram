@@ -14,7 +14,7 @@ class PicturesController < ApplicationController
         params[:tag_ids].each do |key, value|      
           @pictures += Tag.find_by(tag_name: key).pictures if value == "1"
         end
-        @pictures.uniq!
+        @pictures.uni
       end
 
       if params[:tag]

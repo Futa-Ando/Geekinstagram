@@ -2,7 +2,7 @@
 
 <div class="post-container">
     <%= form_for(picture, :url => { controller:'pictures', action:'create'})do |f| %>
-        <%= f.label :料理名 %>
+        <%= f.label :タイトル %>
         <br>
         <%= f.text_field :title,size: 40 %>
 
@@ -40,7 +40,7 @@
             <% end %>
         </div>
 
-            <h5>料理の難易度：</h5>
+            <h5>難易度：</h5>
         <div class="post_form">
             <%= f.radio_button :level,  5 ,id: 'star6'%>
             <label for="star6"><span class="text">難しい</span>★</label>

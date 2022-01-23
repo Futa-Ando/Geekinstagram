@@ -25,23 +25,33 @@
               <% end %>
             </li>
           </div>
-          <div><li><%= link_to 'トップページ', root_path %></li></div>
+          <div><li><%= link_to 'トップページ', root_path,class:"open"  %></li></div>
           <% if not user_signed_in? %>
-            <div><li><%= link_to "ログイン", pictures_path %></li></div>
-            <div><li><%= link_to "新規登録", new_user_registration_path %></li></div>
+            <div><li><%= link_to "ログイン", pictures_path,class:"open"  %></li></div>
+            <div><li><%= link_to "新規登録", new_user_registration_path,class:"open"  %></li></div>
           <% end %>
           <% if user_signed_in? %>
-            <div><li><%= link_to "投稿一覧", pictures_path %></li></div>
+            <div><li><%= link_to "投稿一覧", pictures_path,class:"open"  %></li></div>
 
             <% if current_page?(pictures_path) or current_page?(picture_liked_path) or current_page?(picture_viewed_path) or current_page?(picture_commented_path) %>
-              <div><li><button class="open" data-toggle="modal" data-target="#exampleModal">
+              <div><li><div class="open click" data-toggle="modal" data-target="#exampleModal">
                 新規投稿
-              </button></li></div>
+              </div></li></div>
             <% end %>
 
-            <div><li><%= link_to "マイページ", user_path(current_user.id) %></li></div>
-            <div><li><%= link_to 'ログアウト', destroy_user_session_path, method: :delete %></li></div>
-            <div><li><%= link_to "通知", notifications_path %></li></div>
+            <div><li><%= link_to "マイページ", user_path(current_user.id),class:"open" %></li></div>
+            <div><li><%= link_to 'ログアウト', destroy_user_session_path, method: :delete,class:"open"  %></li></div>
+            <div>
+              <li>
+                <%= link_to notifications_path do %>
+                  <% if unchecked_notifications.any? %>
+                  通知 <i class="far fa-bell"></i>
+                  <% else %>
+                  <i class="far fa-bell"></i>
+                  <% end %>
+                <% end %>
+              </li>
+            </div>
           <% end %>
         </ul>
 

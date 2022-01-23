@@ -12,14 +12,14 @@
     <h2><%= t.title.truncate(8) %></h2>
 
     <% if t.image? %>
-        <h4>出来上がり</h4>
+        <h4>写真</h4>
         <div data-toggle="modal" data-target=".bd-example-modal-lg-<%= t.id %>" >
             <%= image_tag t.image_url, size: "256x144", class:"click" %>
         </div>
     <% end %>
 
     <% if t.youtube_url? %>
-        <h4>料理動画</h4>
+        <h4>動画</h4>
         <iframe width="250" height="140" src="https://www.youtube.com/embed/<%=t.youtube_url%>" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen ></iframe>
     <% end %>
 
@@ -31,56 +31,48 @@
 
     </br>
 
-    <% if user_signed_in? %>
-        <% if current_user.already_liked?(t) %>
-            <%= link_to picture_like_path(id: t.id, picture_id: t.id), method: :delete do %>
-                <i class="fas fa-heart"></i><%= t.likes.count %>
+    <div class="toukou-object">
+        <div id="likes_buttons_<%= t.id %>" class="click inline1">
+            <%= render partial: 'likes/like', locals: { picture: t } %>
+        </div>
+
+        <div class="click inline1" data-toggle="modal" data-target="#exampleModal-comment-<%= t.id %>" >
+            <i class="far fa-comments click" ></i><%= t.comments.count %>
+        </div>
+
+        <div class="inline1" data-toggle="modal" data-target="#exampleModal-tag-<%= t.id %>" >
+            <i class="fas fa-tags click"></i><%= t.tags.count %>
+        </div>
+
+        <div class="click inline1">
+            <%= link_to picture_path(t.id) do %>
+                <i class="far fa-eye inline1"></i><%= t.impressions_count %>
             <% end %>
-        <% else %>
-            <%= link_to picture_likes_path(id: t.id, picture_id: t.id), method: :post do %>
-                <i class="far fa-heart"></i><%= t.likes.count %>
-            <% end %>
+        </div>
+
+        <% if user_signed_in? && current_user.id == t.user_id %>  
+            <div class="click inline1">
+                <%= link_to  edit_picture_path(t.id) do %>
+                    <i class="fas fa-pen"></i>
+                <% end %>
+            </div>
+
+            <div data-toggle="modal" data-target=".bd-example-modal-sm-<%= t.id %>" class="click inline1">
+                <i class="fas fa-trash-alt"></i>
+            </div>
         <% end %>
-    <% else %>
-        <%= t.likes.count %>
-    <% end %>
-
-    <div data-toggle="modal" data-target="#exampleModal-comment-<%= t.id %>" >
-        <i class="far fa-comments click" ></i><%= t.comments.count %>
     </div>
-
-    <div data-toggle="modal" data-target="#exampleModal-tag-<%= t.id %>" >
-        <i class="fas fa-tags click"></i><%= t.tags.count %>
-    </div>
-    
-    <%= link_to picture_path(t.id) do %>
-        <i class="far fa-eye"></i><%= t.impressions_count %>
-    <% end %>
-
-    </br>
-
-    <time datetime="<%= t.created_at %>">
-        <%= time_ago_in_words(t.created_at) %>前
-        <%= t.created_at.to_s(:datetime_jp) %>
-    </time>
-    
-    <br />
-
-    <h4>
-    <% if user_signed_in? && current_user.id == t.user_id %>  
-        <%= link_to "編集", edit_picture_path(t.id) %>
-        |<%= link_to "削除", picture_path(t.id), method: :delete %>
-    <% end %>
-    </h4>
 
     <div>
-        <h2>料理の難易度：
         <span class="star-rating">
         <span class="star-rating-front" style="width: <%= getPercent(t.level) %>%;">★★★★★</span>
         <span class="star-rating-back">★★★★★</span>
         </span>
-        </h2>
     </div>
+
+    <time datetime="<%= t.created_at %>">
+        <%= time_ago_in_words(t.created_at) %>前
+    </time>
 
 </div>
 
@@ -167,6 +159,17 @@
             <div class="modal-footer">                       
                 <%= link_to "投稿詳細をみる", picture_path(t.id) %>    
             </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade bd-example-modal-sm-<%= t.id %>" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-sm">
+        <div class="modal-content center">
+            <h3>本当に投稿を削除してよろしいですか？</h3>
+            <p>※削除された投稿は、復元されることはありません！</p>
+            <button type="button" class="btn btn-secondary inline2" data-dismiss="modal">キャンセル</button>
+            <%= link_to "投稿を削除", picture_path(t.id), method: :delete ,class:"btn btn-danger inline2" %>
         </div>
     </div>
 </div>

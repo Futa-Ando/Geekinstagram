@@ -51,12 +51,6 @@
     margin: 5px;
   }
 
-  .picturetop{
-    background-color: rgb(250, 232, 232);
-    height: 60px;
-    font-size: large;
-  }
-
   .lecture_form{
     display: flex;
     flex-direction: column;
@@ -69,13 +63,6 @@
     width: 200px;
     margin-bottom: 30px;
   }
-
-  .topimage{
-    border-radius: 50%;
-    width: 60px;  
-    height: 60px;
-    object-fit: cover;
-    }
 
   .contributer{
     display: flex;
@@ -108,4 +95,10 @@
     display: flex;
     justify-content: flex-start;
     margin-left: 40px;
+  }
+
+  .toukou-object{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
   }

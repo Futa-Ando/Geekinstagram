@@ -1,0 +1,176 @@
+<div class="col-xs-6 col-sm-4 col-md-3 picture-container">
+
+    <div class="contributer">
+        <%= link_to user_path(t.picture.user.id) do %>
+            <%= image_tag t.picture.user.image_url, size: "60x60" ,class:"topimage" if t.picture.user.image? %>
+        <% end %>
+        <%= link_to user_path(t.picture.user.id) do %>
+            <h3 class="contributername" ><%= t.picture.user.name %></h3>
+        <% end %>
+    </div>
+
+    <h2><%= t.picture.title.truncate(8) %></h2>
+
+    <% if t.picture.image? %>
+        <h4>写真</h4>
+        <div data-toggle="modal" data-target=".bd-example-modal-lg-<%= t.picture.id %>" >
+            <%= image_tag t.picture.image_url, size: "256x144", class:"click" %>
+        </div>
+    <% end %>
+
+    <% if t.picture.youtube_url? %>
+        <h4>動画</h4>
+        <iframe width="250" height="140" src="https://www.youtube.com/embed/<%=t.picture.youtube_url%>" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen ></iframe>
+    <% end %>
+
+    <% if t.picture.video? %>
+        <%=  video_tag t.picture.video_url ,:controls => true %>
+    <% end %>
+
+    <%= t.picture.body.truncate(17) %>
+
+    </br>
+
+    <div class="toukou-object">
+        <div id="likes_buttons_<%= t.picture.id %>" class="click inline1">
+            <%= render partial: 'likes/like', locals: { picture: t.picture } %>
+        </div>
+
+        <div class="click inline1" data-toggle="modal" data-target="#exampleModal-comment-<%= t.picture.id %>" >
+            <i class="far fa-comments click" ></i><%= t.picture.comments.count %>
+        </div>
+
+        <div class="inline1" data-toggle="modal" data-target="#exampleModal-tag-<%= t.picture.id %>" >
+            <i class="fas fa-tags click"></i><%= t.picture.tags.count %>
+        </div>
+
+        <div class="click inline1">
+            <%= link_to picture_path(t.picture.id) do %>
+                <i class="far fa-eye inline1"></i><%= t.picture.impressions_count %>
+            <% end %>
+        </div>
+
+        <% if user_signed_in? && current_user.id == t.picture.user_id %>  
+            <div class="click inline1">
+                <%= link_to  edit_picture_path(t.picture.id) do %>
+                    <i class="fas fa-pen"></i>
+                <% end %>
+            </div>
+
+            <div data-toggle="modal" data-target=".bd-example-modal-sm-<%= t.picture.id %>" class="click inline1">
+                <i class="fas fa-trash-alt"></i>
+            </div>
+        <% end %>
+    </div>
+
+    <div>
+        <span class="star-rating">
+        <span class="star-rating-front" style="width: <%= getPercent(t.picture.level) %>%;">★★★★★</span>
+        <span class="star-rating-back">★★★★★</span>
+        </span>
+    </div>
+
+    <time datetime="<%= t.picture.created_at %>">
+        <%= time_ago_in_words(t.picture.created_at) %>前
+    </time>
+
+</div>
+
+
+<div class="modal fade bd-example-modal-lg-<%= t.picture.id %>" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content image-modal">
+
+            <div>
+                <%= image_tag t.picture.image_url, size: "528x297" %>
+            </div>
+            <div class="modal-body">
+                <div class="contributer">
+                    <%= link_to user_path(t.picture.user.id) do %>
+                        <%= image_tag t.picture.user.image_url, size: "60x60" ,class:"topimage" if t.picture.user.image? %>
+                    <% end %>
+                    <%= link_to user_path(t.picture.user.id) do %>
+                        <h3 class="contributername" ><%= t.picture.user.name %></h3>
+                    <% end %>
+                </div>
+                <%= t.picture.body.truncate(73) %></br>
+                <div class="modal-link">
+                    <h4>
+                    <%= link_to "詳細", picture_path(t.picture.id) %>
+                    <% if user_signed_in? && current_user.id == t.picture.user_id %>  
+                        |<%= link_to "編集", edit_picture_path(t.picture.id) %>
+                        |<%= link_to "削除", picture_path(t.picture.id), method: :delete %>
+                    <% end %>
+                    </h4>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<% if user_signed_in? %>
+    <%= form_with(model: [t.picture, @comment], local: true) do |f| %>
+
+        <div class="modal fade" id="exampleModal-comment-<%= t.picture.id %>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">コメントフォーム</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        
+                        <%= f.text_area :content,size:"54x3" %>
+
+                    </div>
+                        <div class="modal-footer">
+                        <%= f.label :画像 %>
+                        <%= f.file_field :image %>                        
+                        <%= button_tag type: "submit" do %>
+                            <i class="far fa-comments"></i>コメント
+                        <% end %>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    <% end %>
+<% end %>
+
+
+<div class="modal fade" id="exampleModal-tag-<%= t.picture.id %>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">この投稿のタグ一覧</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                
+            <% t.picture.tags.each do |tag| %>
+                <span><%= tag.tag_name %>|</span>
+            <% end %>
+
+            </div>
+            <div class="modal-footer">                       
+                <%= link_to "投稿詳細をみる", picture_path(t.picture.id) %>    
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade bd-example-modal-sm-<%= t.picture.id %>" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-sm">
+        <div class="modal-content center">
+            <h3>本当に投稿を削除してよろしいですか？</h3>
+            <p>※削除された投稿は、復元されることはありません！</p>
+            <button type="button" class="btn btn-secondary inline2" data-dismiss="modal">キャンセル</button>
+            <%= link_to "投稿を削除", picture_path(t.picture.id), method: :delete ,class:"btn btn-danger inline2" %>
+        </div>
+    </div>
+</div>

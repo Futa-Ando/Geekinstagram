@@ -27,6 +27,12 @@ class UsersController < ApplicationController
         end
 
         @comment = Comment.new
+        @likes = @user.likes.select(:picture_id).distinct
+    end
+
+    def like_picture
+      @user = User.find(params[:id])
+      @likes = @user.likes.select(:picture_id).distinct
     end
 
 end

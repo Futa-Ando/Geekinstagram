@@ -1,4 +1,5 @@
 <%= stylesheet_link_tag "users", :media => "all" %>
+<%= stylesheet_link_tag "application", :media => "all" %>
 
 <h1>ユーザーマイページ</h1>
 
@@ -6,7 +7,7 @@
 
 <div class="base-info">
   <div class="user-info">
-    <%= image_tag @user.image_url, size: "120x120" ,class:"topimage" if @user.image? %>
+    <%= image_tag @user.image_url, size: "120x120" ,class:"topimage2" if @user.image? %>
   <h1><%= @user.name %></h1>
   </div>
   <p>メールアドレス : <%= @user.email %></p>
@@ -76,15 +77,15 @@
   </div>
 </div>
 
-
-<h2>ユーザーがいいねした投稿一覧</h2>
+<h3>いいねした投稿</h3>
 <div class="container">
   <div class="row">
-    <% @user.liked_pictures.each do |t| %>
-      <%= render partial: "pictures/picturecontent", locals: { t: t } %>
+    <% @likes.each do |t| %>
+      <%= render partial: "pictures/likepics", locals: { t: t } %>
     <% end %>
   </div>
 </div>
+
 
 <div class="kinou-detail">
     <h2>このページに実装されている機能</h2>

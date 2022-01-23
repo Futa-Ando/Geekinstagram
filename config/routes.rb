@@ -11,8 +11,12 @@ Rails.application.routes.draw do
   post 'contacts/back', to: 'contacts#back', as: 'back'
   get 'done', to: 'contacts#done', as: 'done'
 
-  devise_for :users
+  devise_for :users, controllers: {   registrations: 'users/registrations',
+                      sessions: 'users/sessions' }
   resources :users, only: [:index, :show] 
+  get 'user/:id/picture' => 'users#picture', as: 'user_picture'
+  get 'user/:id/like_picture' => 'users#like_picture', as: 'user_like_picture'
+  get 'user/:id/favorite_picture' => 'users#favorite_picture', as: 'user_favorite_picture'
   resources :relationships, only: [:create, :destroy]
   resources :notifications, only: [:index, :update]
   resources :messages, :only => [:create]

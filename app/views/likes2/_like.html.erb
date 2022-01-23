@@ -1,0 +1,26 @@
+<div class="icons">
+    <% if user_signed_in? %>
+        <% if current_user.already_liked?(picture) %>
+            <% if count <= 10 %>
+                <%= link_to picture_likes2_path(id: picture.id, picture_id: picture.id), method: :post, remote: true do %>
+                    <i class="fas fa-thumbs-up"></i><%= picture.likes.count %><br>
+                <% end %>
+            <% else %>
+                <div onclick="LikeDeleteBtn();" >
+                    <i class="fas fa-thumbs-up"></i><%= picture.likes.count %><br>
+                </div>
+            <% end %>
+            <%= link_to picture_like2_path(id: picture.id, picture_id: picture.id), method: :delete, data: { confirm: "いいねを取り消しますか？" }, remote: true do %>
+                <i class="fas fa-thumbs-down"></i>
+            <% end %>
+        <% else %>
+            <%= link_to picture_likes2_path(id: picture.id, picture_id: picture.id), method: :post, remote: true do %>
+                <i class="far fa-thumbs-up"></i><%= picture.likes.count %>
+            <% end %>
+            <div class="vacant-icon"></div>
+        <% end %>
+    <% else %>
+        <i class="far fa-thumbs-up"></i><%= picture.likes.count %>
+        <div class="vacant-icon"></div>
+    <% end %>
+</div>
