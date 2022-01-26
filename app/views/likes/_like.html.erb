@@ -1,13 +1,17 @@
-<div class="icons">
+<div>
     <% if user_signed_in? %>
         <% if current_user.already_liked?(picture) %>
             <%= link_to picture_likes_path(id: picture.id, picture_id: picture.id), method: :post, remote: true do %>
                 <i class="fas fa-thumbs-up"></i><%= picture.likes.count %>
             <% end %>
+            <%= link_to picture_like_path(id: picture.id, picture_id: picture.id), method: :delete, remote: true do %>
+                <i class="fas fa-thumbs-down"></i>
+            <% end %>
         <% else %>
             <%= link_to picture_likes_path(id: picture.id, picture_id: picture.id), method: :post, remote: true do %>
                 <i class="far fa-thumbs-up"></i><%= picture.likes.count %>
             <% end %>
+            <i class="far fa-thumbs-down"></i>
         <% end %>
     <% else %>
         <i class="far fa-thumbs-up"></i><%= picture.likes.count %>

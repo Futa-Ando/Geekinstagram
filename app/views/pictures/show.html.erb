@@ -1,101 +1,108 @@
-<h1>GeekInstagram</h1>
+<%= stylesheet_link_tag "pictures", :media => "all" %>
 
+<div class="show-wrapper">
 
-    <h2><%= @picture.title %></h2>
-    <% if @picture.image? %>
-        <h4>出来上がり</h4>
-            <%= image_tag @picture.image_url, size: "500x400" %>
-    <% end %>
+  <div class="show-content">
+      <h2><%= @picture.title %></h2>
+      <% if @picture.image? %>
+        <%= image_tag @picture.image_url, size: "500x400" %>
+      <% end %>
 
-    <% if @picture.youtube_url? %>
-        <h4>料理動画</h4>
-        <iframe width="500" height="280" src="https://www.youtube.com/embed/<%= @picture.youtube_url%>" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen ></iframe>
-    <% end %>
-    <br/>
+      <% if @picture.youtube_url? %>
+          <iframe width="500" height="280" src="https://www.youtube.com/embed/<%= @picture.youtube_url%>" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen ></iframe>
+      <% end %>
+      <br/>
 
-    <%= @picture.body %>
+      <%= @picture.body %>
 
-    <br/>
+      <br/>
 
-    タグ：
-    <% @picture.tags.each do |tag| %>
-      <span><%= tag.tag_name %></span>
-    <% end %>
+      タグ：
+      <% @picture.tags.each do |tag| %>
+        <span><%= tag.tag_name %></span>
+      <% end %>
 
-    </br>
+      </br>
 
-    <% if user_signed_in? %>
-        <% if current_user.already_liked?(@picture) %>
-            <%= link_to picture_like_path(id: @picture.id, picture_id: @picture.id), method: :delete do %>
-                <i class="fas fa-heart"></i>×<%= @picture.likes.count %>
+      <div class="toukou-object">
+          <div id="likes_buttons_<%= @picture.id %>" class="click inline1">
+              <%= render partial: 'likes/like', locals: { picture: @picture } %>
+          </div>
+
+          <% if user_signed_in? && current_user.id == @picture.user_id %>  
+              <div class="click inline1">
+                  <%= link_to  edit_picture_path(@picture.id) do %>
+                      <i class="fas fa-pen"></i>
+                  <% end %>
+              </div>
+
+              <div class="click inline1">
+                  <%= link_to picture_path(@picture.id), method: :delete, data: { confirm: "投稿を削除しますか？" }, remote: true do %>
+                      <i class="fas fa-trash-alt"></i>
+                  <% end %>
+              </div>
+          <% end %>
+      </div>
+      </br>
+      <time datetime="<%= @picture.created_at %>">
+        <%= time_ago_in_words(@picture.created_at) %>前
+        <%= @picture.created_at.to_s(:datetime_jp) %>
+      </time>
+      
+  </div>
+
+  <div class="comment-wrapper">
+
+    <div class="comment-show">
+      <p class="comment-push">コメント一覧</p>
+      <% @comments.each do |c| %>
+        <div class="comentop">
+          <div class="contributer">
+              <%= link_to user_path(c.user.id) do %>
+                  <%= image_tag c.user.image_url, class:"topimage5" if c.user.image? %>
+              <% end %>
+              <%= link_to user_path(c.user.id) do %>
+                  <h6 class="contributername" ><%= c.user.name unless c.user.blank? %></h6>
+              <% end %>
+          </div>
+          <div class="comment-button">
+            <%= link_to comment_path(c.id) do %>
+              <i class="far fa-eye"></i>
             <% end %>
-        <% else %>
-            <%= link_to picture_likes_path(id: @picture.id, picture_id: @picture.id), method: :post do %>
-                <i class="far fa-heart"></i>×<%= @picture.likes.count %>
+            <% if user_signed_in? && current_user.id == c.user_id %> 
+              <%= link_to picture_comment_path(@picture.id, c.id), method: :delete, data: { confirm: "コメントを削除しますか？" } do %>
+                <i class="fas fa-trash-alt button2"></i>
+              <% end %>
             <% end %>
-        <% end %>
-    <% else %>
-        <%= @picture.likes.count %>
-    <% end %>
+          </div>
+        </div>
 
-    閲覧回数：
-    <%= @picture.impressions_count %>回
-
-    </br>
-
-    <time datetime="<%= @picture.created_at %>">
-      <%= time_ago_in_words(@picture.created_at) %>前
-      <%= @picture.created_at.to_s(:datetime_jp) %>
-    </time>  
-    
-    <br />
-
-    <% if user_signed_in? && current_user.id == @picture.user_id %>  
-        <%= link_to "編集する", edit_picture_path(@picture.id) %>
-        <%= button_to "削除する", picture_path(@picture.id), method: :delete %>
-    <% end %>
-
-
-<h2>いいねしたユーザー</h2>
-<% @picture.liked_users.each do |user| %>
-  <li><%= user.name %></li>
-<% end %>
-
-<div class="comment-wrapper">
-
-  <p>コメント一覧</p>
-  <% @comments.each do |c| %>
-    <div>
-      <%= c.user.name unless c.user.blank? %>
-      <br>
-      <%= c.content %>
-      <%= image_tag c.image_url, size: "250x200" if c.image? %>
-      <br>
-      <%= link_to "詳細へ", comment_path(c.id) %>
-      <% if user_signed_in? && current_user.id == c.user_id %> 
-        <%= button_to "削除する", picture_comment_path(@picture.id, c.id), method: :delete %>
+          <div class='arrow_box'>
+              <%= c.content %>
+              <%= image_tag c.image_url, size: "250x200" if c.image? %>
+          </div>
+        <br>
       <% end %>
     </div>
-    <br>
-  <% end %>
 
-  <% if user_signed_in? %>
-    <%= form_with(model: [@picture, @comment], local: true) do |f| %>
-
-      <div class="modal-body">
-          
-        <%= f.text_area :content,size:"54x3" %>
-
-      </div>
-      <div class="modal-footer">
-        <%= f.label :コメント画像 %>
-        <%= f.file_field :image %>  
-        <%= button_tag type: "submit" do %>
-          <i class="far fa-comments"></i> コメントする
+    <div class="comment-push">
+      <% if user_signed_in? %>
+        <%= form_with(model: [@picture, @comment], local: true) do |f| %>
+          <div class="modal-body">
+            <%= f.text_area :content,size:"54x3" %>
+          </div>
+          <div>
+            <%= f.label :コメント画像 %>
+            <%= f.file_field :image %>  
+            <%= button_tag type: "submit" do %>
+              <i class="far fa-comments"></i> コメントする
+            <% end %>
+          </div>
         <% end %>
+      <% end %>
+    </div>
 
-    <% end %>
-  <% end %>
+  </div>
 
 </div>
 

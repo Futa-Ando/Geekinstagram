@@ -28,6 +28,8 @@
   <%= link_to "フォロワーの投稿", user_favorite_picture_path(id: @user.id) %>
 </div>
 
+<%= render partial: "notifications/index" %>
+
 <table>
   <tr>
     <th>＼</th>
@@ -62,7 +64,6 @@
 </table>
 
 
-
 <% if current_user.id == @user.id %>
   <%= link_to "編集する", edit_user_registration_path %>
     <% else %>
@@ -79,8 +80,6 @@
 <% end %>
 
 <% end %>
-
-<%= link_to "ユーザー一覧へ", users_path %>
 
 <div class="kinou-detail">
     <h2>このページに実装されている機能</h2>
@@ -111,6 +110,18 @@
         <p>
         この機能は<b>フォロー機能</b>と呼ばれています。
         実装のための記事は、<a href="https://qiita.com/mitsumitsu1128/items/e41e2ff37f143db81897">こちら</a>になります。
+        </p>
+    </div>
+    <div class="nakami">
+        <h5>①自分の投稿へのいいね・コメント、自分へのフォローがなされた場合に通知が届く機能</h5>
+        <p>
+        この機能は<b>通知機能</b>と呼ばれています。
+        コメント、いいね、フォロー以外にも、DM、フォロワーの投稿などに対する通知機能も頑張れば実装できます。
+        私が利用した記事は<a href="https://qiita.com/nekojoker/items/80448944ec9aaae48d0a">こちら</a>になります。
+        かなり丁寧に書いてくださっているのですが、途中Geek受講生だとわかりにくい部分（Slimファイルの部分など）が出てくると思うので、
+        担当メンターさんに見てもらいながら実装していきましょう。
+        ちなみにですが、Slimに関するわかりやすい記事は
+        <a href="https://qiita.com/pugiemonn/items/b64171952d958dc4d6be">こちら</a>になります。
         </p>
     </div>
 <div>

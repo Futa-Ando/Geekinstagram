@@ -1,7 +1,5 @@
-<h1>GeekInstagram</h1>
+<h1>投稿編集</h1>
 
 <%= form_for @picture do |f| %>
-    <%= f.label :画像説明 %>
-    <%= f.text_field :body, :size => 140 %> 
-    <%= f.submit "編集する" %>
-  <% end %>
+  <%= render partial: "picturenew", locals: { picture: @picture } %>
+<% end %>

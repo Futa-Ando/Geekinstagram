@@ -24,7 +24,7 @@ class CommentsController < ApplicationController
     def destroy
       comment = Comment.find(params[:id])
       comment.destroy
-      redirect_to :controller => "pictures", :action => "index"
+      redirect_to picture_path(comment.picture_id)
     end
   
     private

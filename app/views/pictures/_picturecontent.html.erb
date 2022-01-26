@@ -57,8 +57,10 @@
                 <% end %>
             </div>
 
-            <div data-toggle="modal" data-target=".bd-example-modal-sm-<%= t.id %>" class="click inline1">
-                <i class="fas fa-trash-alt"></i>
+            <div class="click inline1">
+                <%= link_to picture_path(t.id), method: :delete, data: { confirm: "投稿を削除しすか？" }, remote: true do %>
+                    <i class="fas fa-trash-alt"></i>
+                <% end %>
             </div>
         <% end %>
     </div>
@@ -125,7 +127,7 @@
                         <%= f.text_area :content,size:"54x3" %>
 
                     </div>
-                        <div class="modal-footer">
+                    <div class="modal-footer">
                         <%= f.label :画像 %>
                         <%= f.file_field :image %>                        
                         <%= button_tag type: "submit" do %>
@@ -159,17 +161,6 @@
             <div class="modal-footer">                       
                 <%= link_to "投稿詳細をみる", picture_path(t.id) %>    
             </div>
-        </div>
-    </div>
-</div>
-
-<div class="modal fade bd-example-modal-sm-<%= t.id %>" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-sm">
-        <div class="modal-content center">
-            <h3>本当に投稿を削除してよろしいですか？</h3>
-            <p>※削除された投稿は、復元されることはありません！</p>
-            <button type="button" class="btn btn-secondary inline2" data-dismiss="modal">キャンセル</button>
-            <%= link_to "投稿を削除", picture_path(t.id), method: :delete ,class:"btn btn-danger inline2" %>
         </div>
     </div>
 </div>

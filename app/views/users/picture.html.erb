@@ -5,7 +5,7 @@
 <div class="container">
     <div class="row">
         <% @user.pictures.each do |t| %>
-        <%= render partial: "pictures/picturecontent", locals: { t: t } %>
+            <%= render partial: "pictures/picturecontent", locals: { t: t } %>
         <% end %>
     </div>
 </div>

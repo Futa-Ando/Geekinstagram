@@ -27,19 +27,19 @@ class UsersController < ApplicationController
         end
 
         @comment = Comment.new
-        @likes = @user.likes.select(:picture_id).distinct
+        @notifications = current_user.passive_notifications.page(params[:page]).per(20)
     end
 
     def like_picture
-      @user = User.find(params[:id])
-      @likes = @user.likes.select(:picture_id).distinct
-      @comment = Comment.new
+        @user = User.find(params[:id])
+        @likes = @user.likes.select(:picture_id).distinct
+        @comment = Comment.new
     end
 
     def picture
-      @user = User.find(params[:id])
-      @pictures = @user.pictures
-      @comment = Comment.new
+        @user = User.find(params[:id])
+        @pictures = @user.pictures
+        @comment = Comment.new
     end
 
     def favorite_picture
