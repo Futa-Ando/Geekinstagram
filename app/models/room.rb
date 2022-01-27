@@ -2,5 +2,5 @@ class Room < ApplicationRecord
 
     has_many :messages, dependent: :destroy
     has_many :entries, dependent: :destroy
-    mount_uploader :image, ImageUploader
+    has_many :notifications, dependent: :destroy
 end

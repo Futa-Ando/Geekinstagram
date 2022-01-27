@@ -40,7 +40,6 @@ class PicturesController < ApplicationController
     end
 
     def commented
-        comments = @picture.comments
         @commented_pictures = Picture.order(comments_count: 'DESC')
         @picture = Picture.new
         @comment = Comment.new

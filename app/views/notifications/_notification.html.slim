@@ -14,6 +14,10 @@
       - when 'like' then
         = link_to 'あなたの投稿', notification.picture, style: "font-weight: bold;"
         = "にいいねしました"
+      - when 'dm' then
+        = "あなたにメッセージを送信しました。"
+        = link_to "チャット", notification.room, style: "font-weight: bold;"
+        = "を確認しましょう！"
       - when 'comment' then
         - if notification.picture.user_id == visited.id
           = link_to "あなたの投稿", notification.picture, style: "font-weight: bold;"

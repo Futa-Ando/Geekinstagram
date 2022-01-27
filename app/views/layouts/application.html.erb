@@ -18,7 +18,7 @@
       <div class="headbtn" id="header-list", onmouseover="mouseover();" >
 
           <div>
-            <h1>機能紹介サイト</h1>
+            <h1>サイト</h1>
           </div>
           <div>
             <%= link_to 'トップ', root_path, class:"open" %>
@@ -45,7 +45,7 @@
                 </div>
             <% end %>
             <div>
-              <%= link_to 'ログアウト', destroy_user_session_path, method: :delete, class:"open", data: { confirm: "ログアウトしすか？" }, remote: true %>
+              <%= link_to 'ログアウト', destroy_user_session_path, method: :delete, class:"open", data: { confirm: "ログアウトしすか？" } %>
             </div>
             <div>
               <%= link_to "チャット", users_path, class:"open" %>

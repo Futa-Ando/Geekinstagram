@@ -10,15 +10,15 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_01_13_141021) do
+ActiveRecord::Schema.define(version: 2022_01_06_023912) do
 
   create_table "comments", force: :cascade do |t|
     t.string "content"
+    t.string "image"
     t.integer "user_id", null: false
     t.integer "picture_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.string "image"
     t.index ["picture_id"], name: "index_comments_on_picture_id"
     t.index ["user_id"], name: "index_comments_on_user_id"
   end
@@ -89,9 +89,9 @@ ActiveRecord::Schema.define(version: 2022_01_13_141021) do
     t.integer "user_id", null: false
     t.integer "room_id", null: false
     t.text "content"
+    t.string "image"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.string "image"
     t.index ["room_id"], name: "index_messages_on_room_id"
     t.index ["user_id"], name: "index_messages_on_user_id"
   end
@@ -101,6 +101,8 @@ ActiveRecord::Schema.define(version: 2022_01_13_141021) do
     t.integer "visited_id", null: false
     t.integer "picture_id"
     t.integer "comment_id"
+    t.integer "room_id"
+    t.integer "message_id"
     t.string "action", default: "", null: false
     t.boolean "checked", default: false, null: false
     t.datetime "created_at", null: false
@@ -113,8 +115,6 @@ ActiveRecord::Schema.define(version: 2022_01_13_141021) do
 
   create_table "pictures", force: :cascade do |t|
     t.text "body"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
     t.integer "user_id"
     t.string "image"
     t.string "youtube_url"
@@ -123,6 +123,8 @@ ActiveRecord::Schema.define(version: 2022_01_13_141021) do
     t.string "title"
     t.string "video"
     t.datetime "time"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
   end
 
   create_table "relationships", force: :cascade do |t|
@@ -169,14 +171,9 @@ ActiveRecord::Schema.define(version: 2022_01_13_141021) do
   create_table "users", force: :cascade do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
-    t.string "reset_password_token"
-    t.datetime "reset_password_sent_at"
-    t.datetime "remember_created_at"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.string "name"
-    t.text "profile"
-    t.string "image"
+    t.string "name", default: "", null: false
+    t.text "profile", default: "", null: false
+    t.string "image", default: "", null: false
     t.string "provider"
     t.string "uid"
     t.boolean "admin", default: false
@@ -192,6 +189,11 @@ ActiveRecord::Schema.define(version: 2022_01_13_141021) do
     t.string "depth10"
     t.string "depth11"
     t.string "depth12"
+    t.string "reset_password_token"
+    t.datetime "reset_password_sent_at"
+    t.datetime "remember_created_at"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
