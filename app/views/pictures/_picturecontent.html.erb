@@ -58,7 +58,7 @@
             </div>
 
             <div class="click inline1">
-                <%= link_to picture_path(t.id), method: :delete, data: { confirm: "投稿を削除しすか？" }, remote: true do %>
+                <%= link_to picture_path(t.id), method: :delete, data: { confirm: "投稿を削除しすか？" } do %>
                     <i class="fas fa-trash-alt"></i>
                 <% end %>
             </div>

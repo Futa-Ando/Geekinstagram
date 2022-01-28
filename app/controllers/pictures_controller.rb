@@ -40,7 +40,7 @@ class PicturesController < ApplicationController
     end
 
     def commented
-        @commented_pictures = Picture.order(comments_count: 'DESC')
+        @commented_pictures = Picture.find(Comment.group(:picture_id).order('count(picture_id) desc').pluck(:picture_id))
         @picture = Picture.new
         @comment = Comment.new
     end
