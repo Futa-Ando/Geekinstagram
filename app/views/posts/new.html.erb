@@ -1,0 +1,48 @@
+<%= form_for(@post, role: 'form') do |f| %>
+    <div class="container-sindan">
+        <div class="row">
+            <div class="col-12">
+                <p>exam1. どちらかと言うと…</p>
+            </div>
+            <div class="col-6">
+                <p><%= f.check_box :exam, {multiple: true}, "1", nil %>じっくり考える方だ</p>
+            </div>
+            <div class="col-6">
+                <p><%= f.check_box :exam, {multiple: true}, "2", nil %>考えるより行動する方だ</p>
+            </div>
+
+            <div class="col-12">
+                <p>exam2. 自分の価値観として近い方は…</p>
+            </div>
+            <div class="col-6">
+                <p><%= f.check_box :exam, {multiple: true}, "1", nil %>周りの人と違う存在でありたい</p>
+            </div>
+            <div class="col-6">
+                <p><%= f.check_box :exam, {multiple: true}, "2", nil %>周りと同じでいたい</p>
+            </div>
+
+            <div class="col-12">
+                <p>exam3. 人と接するときは…</p>
+            </div>
+            <div class="col-6">
+                <p><%= f.check_box :exam, {multiple: true}, "1", nil %>相手の話をよく聞く方だ</p>
+            </div>
+            <div class="col-6">
+                <p><%= f.check_box :exam, {multiple: true}, "2", nil %>自分の話をよくする方だ</p>
+            </div>
+
+            <div class="col-12">
+                <p>exam4. 大切にしたいのは…</p>
+            </div>
+            <div class="col-6">
+                <p><%= f.check_box :exam, {multiple: true}, "1", nil %>論理性だ</p>
+            </div>
+            <div class="col-6">
+                <p><%= f.check_box :exam, {multiple: true}, "2", nil %>情緒だ</p>
+            </div>
+        </div>
+    </div>
+    <div class="sindanbotan">
+        <%= f.submit "診断する" %>
+    </div>
+<% end %>

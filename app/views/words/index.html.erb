@@ -1,0 +1,12 @@
+<%= link_to "言葉を投稿する", new_word_path %>
+
+<% @words.each do |t| %>
+    <div>
+        言葉：<%= t.word %>
+        （<%= t.reading %>）
+        <br/>
+        <%= t.detail %>
+        季節：<%= render_with_hashtags(t.season) %>
+        <%= link_to "削除", word_path(t.id), method: :delete %>
+    </div>
+<% end %>

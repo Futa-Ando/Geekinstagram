@@ -1,0 +1,20 @@
+current directory: C:/Users/futaP/Desktop/geekpicture/vendor/bundle/ruby/3.0.0/gems/rinku-2.0.6/ext/rinku
+C:/Ruby30-x64/bin/ruby.exe -I C:/Ruby30-x64/lib/ruby/3.0.0 -r ./siteconf20220212-11648-2zumne.rb extconf.rb
+creating Makefile
+
+current directory: C:/Users/futaP/Desktop/geekpicture/vendor/bundle/ruby/3.0.0/gems/rinku-2.0.6/ext/rinku
+make DESTDIR\= clean
+
+current directory: C:/Users/futaP/Desktop/geekpicture/vendor/bundle/ruby/3.0.0/gems/rinku-2.0.6/ext/rinku
+make DESTDIR\=
+generating rinku-x64-mingw32.def
+compiling autolink.c
+compiling buffer.c
+compiling rinku.c
+compiling rinku_rb.c
+compiling utf8.c
+linking shared-object rinku.so
+
+current directory: C:/Users/futaP/Desktop/geekpicture/vendor/bundle/ruby/3.0.0/gems/rinku-2.0.6/ext/rinku
+make DESTDIR\= install
+/usr/bin/install -c -m 0755 rinku.so ./.gem.20220212-11648-7kbfcq

@@ -2,7 +2,7 @@
 
     <div class="contributer">
         <%= link_to user_path(t.user.id) do %>
-            <%= image_tag t.user.image_url, size: "60x60" ,class:"topimage" if t.user.image? %>
+            <%= image_tag t.user.image_url, size: "60x60" ,class:"topimage" %>
         <% end %>
         <%= link_to user_path(t.user.id) do %>
             <h3 class="contributername" ><%= t.user.name %></h3>
@@ -26,6 +26,12 @@
     <% if t.video? %>
         <%=  video_tag t.video_url ,:controls => true if t.video?%>
     <% end %>
+
+    <a href="<%= image_url t.pdf_url if t.pdf? %>" target="_blank">
+        <div class="post2-2"> 
+            <object data="<%= image_url t.pdf_url if t.pdf? %>" type="application/pdf"></object>
+        </div>
+    </a>
 
     <%= t.body.truncate(17) %>
 

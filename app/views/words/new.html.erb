@@ -1,0 +1,36 @@
+<%= stylesheet_link_tag 'words', :media => "all" %>
+
+<div class="post-container">
+    <%= form_with model:@word, local: true do |f| %>
+        <%= f.label :言葉 %>
+        <br>
+        <%= f.text_field :word, size: 40 %>
+        <%= f.label :読み方（カナ） %>
+        <br>
+        <%= f.text_field :reading, size: 40 %>
+
+        <br/>
+
+        <%= f.label :季節 %>
+        <%= f.select :season,
+        [ ["新年", "#新年"],
+        ["春", "#春"],
+        ["夏", "#夏"],
+        ["秋", "#秋"],
+        ["冬", "#冬"] ],
+        prompt: "季節を選択してね！", class: "hoge" %>
+        
+        <br/>
+
+        <%= f.label :意味・由来 %>
+        <br>
+        <%= f.text_area :detail, size:"41x3" %>
+
+
+
+    <div lass="sousinn">
+        <%= f.submit "送信"%>
+    </div>
+
+    <% end %>
+</div>

@@ -1,0 +1,20 @@
+<%= link_to "言葉を投稿する", new_word_path %>
+
+<h2>ハッシュタグ #<%= @tag.hashname %></h2>
+<ul>
+    <% @words.each do |w| %>
+    <li>
+        <%= link_to word_path(w.id) do %>
+        ああ
+        <% end %>
+        <div>
+        季節：<%= t.season %>
+        言葉：<%= t.word %>
+        （<%= t.reading %>）
+        <br/>
+        <%= t.detail %>
+        <%= render_with_hashtags(t.season) %>
+    </div>
+    </li>
+    <% end %>
+</ul>

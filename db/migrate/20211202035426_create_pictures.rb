@@ -10,6 +10,7 @@ class CreatePictures < ActiveRecord::Migration[6.1]
       t.string :title
       t.string :video
       t.datetime :time
+      t.string :pdf
 
       t.timestamps
     end

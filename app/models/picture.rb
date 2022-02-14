@@ -8,6 +8,7 @@ class Picture < ApplicationRecord
     has_many :tags, through: :tagmaps, dependent: :destroy
     mount_uploader :image, ImageUploader
     mount_uploader :video, VideoUploader
+    mount_uploader :pdf, PdfUploader
     has_many :notifications, dependent: :destroy
 
     is_impressionable counter_cache: true

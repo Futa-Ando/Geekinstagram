@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_01_06_023912) do
+ActiveRecord::Schema.define(version: 2022_02_13_090331) do
 
   create_table "comments", force: :cascade do |t|
     t.string "content"
@@ -40,6 +40,13 @@ ActiveRecord::Schema.define(version: 2022_01_06_023912) do
     t.datetime "updated_at", precision: 6, null: false
     t.index ["room_id"], name: "index_entries_on_room_id"
     t.index ["user_id"], name: "index_entries_on_user_id"
+  end
+
+  create_table "hashtags", force: :cascade do |t|
+    t.string "hashname"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["hashname"], name: "index_hashtags_on_hashname", unique: true
   end
 
   create_table "impressions", force: :cascade do |t|
@@ -123,6 +130,13 @@ ActiveRecord::Schema.define(version: 2022_01_06_023912) do
     t.string "title"
     t.string "video"
     t.datetime "time"
+    t.string "pdf"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "posts", force: :cascade do |t|
+    t.integer "exam"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
@@ -198,6 +212,24 @@ ActiveRecord::Schema.define(version: 2022_01_06_023912) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  create_table "word_hashes", force: :cascade do |t|
+    t.integer "word_id"
+    t.integer "hashtag_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["hashtag_id"], name: "index_word_hashes_on_hashtag_id"
+    t.index ["word_id"], name: "index_word_hashes_on_word_id"
+  end
+
+  create_table "words", force: :cascade do |t|
+    t.string "word"
+    t.string "reading"
+    t.string "season"
+    t.text "detail"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
   add_foreign_key "comments", "pictures"
   add_foreign_key "comments", "users"
   add_foreign_key "entries", "rooms"
@@ -212,4 +244,6 @@ ActiveRecord::Schema.define(version: 2022_01_06_023912) do
   add_foreign_key "replies", "users"
   add_foreign_key "tagmaps", "pictures"
   add_foreign_key "tagmaps", "tags"
+  add_foreign_key "word_hashes", "hashtags"
+  add_foreign_key "word_hashes", "words"
 end

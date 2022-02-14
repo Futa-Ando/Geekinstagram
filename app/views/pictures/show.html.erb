@@ -13,7 +13,7 @@
       <% end %>
       <br/>
 
-      <%= @picture.body %>
+      <%= Rinku.auto_link(@picture.body, :all, 'target="_blank"').html_safe %>
 
       <br/>
 

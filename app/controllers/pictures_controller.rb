@@ -45,6 +45,12 @@ class PicturesController < ApplicationController
         @comment = Comment.new
     end
 
+    def rated
+        @rated_pictures = Picture.order(id: "DESC")
+        @picture = Picture.new
+        @comment = Comment.new
+    end
+
     def create
         picture = Picture.new(picture_params)
         picture.user_id = current_user.id
@@ -92,7 +98,7 @@ class PicturesController < ApplicationController
     
       private
       def picture_params
-        params.require(:picture).permit(:body,:image,:youtube_url,:level,:title,:video, tag_ids: [])
+        params.require(:picture).permit(:body,:image,:youtube_url,:level,:title,:video, :pdf, tag_ids: [])
       end
 
 end

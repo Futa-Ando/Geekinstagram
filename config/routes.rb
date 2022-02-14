@@ -20,6 +20,7 @@ Rails.application.routes.draw do
   get 'user/:id/following' => 'users#following', as: 'user_following'
   get 'user/:id/follower' => 'users#follower', as: 'user_follower'
   resources :relationships, only: [:create, :destroy]
+  resources :posts, only: [:new, :create, :show]
   resources :notifications, only: [:index, :update]
   resources :messages, :only => [:create]
   resources :rooms, :only => [:create, :show, :index]
@@ -33,6 +34,9 @@ Rails.application.routes.draw do
     resources :comments, only: [:create, :destroy]
     resources :likes, only: [:create, :destroy]
   end
+
+  resources :words, only: [:index, :new, :create, :destroy]
+  get '/word/hashtag/:name', to: "words#hashtag"
 
   resources :comments, only: [:show] do
     resources :replies, only: [:create, :destroy]
