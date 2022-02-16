@@ -71,6 +71,7 @@ gem 'geocoder'
 gem 'simple_calendar', '~> 2.0'
 gem 'slim-rails'
 gem 'rinku'
+gem 'pry-rails'
 
 group :production do
   gem 'pg'

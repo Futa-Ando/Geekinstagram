@@ -24,8 +24,8 @@ class WordsController < ApplicationController
     end
 
     def hashtag
-        @tag = Hashtag.find_by(hashname: params[:hashname])
-        @words = @tag.word
+        @tag = Hashtag.find_by(hashname: params[:name])
+        @words = @tag.words
     end
 
     private

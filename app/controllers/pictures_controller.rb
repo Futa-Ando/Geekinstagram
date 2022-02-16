@@ -46,7 +46,7 @@ class PicturesController < ApplicationController
     end
 
     def rated
-        @rated_pictures = Picture.order(id: "DESC")
+        @rated_pictures = Picture.order(level: "DESC")
         @picture = Picture.new
         @comment = Comment.new
     end
@@ -102,3 +102,4 @@ class PicturesController < ApplicationController
       end
 
 end
+  

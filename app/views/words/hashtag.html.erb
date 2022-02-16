@@ -8,12 +8,11 @@
         ああ
         <% end %>
         <div>
-        季節：<%= t.season %>
-        言葉：<%= t.word %>
-        （<%= t.reading %>）
+        季節：<%= render_with_hashtags(w.season) %>
+        言葉：<%= w.word %>
+        （<%= w.reading %>）
         <br/>
-        <%= t.detail %>
-        <%= render_with_hashtags(t.season) %>
+        <%= w.detail %>
     </div>
     </li>
     <% end %>

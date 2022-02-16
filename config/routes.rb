@@ -2,6 +2,7 @@ Rails.application.routes.draw do
 
   root 'hello#index'
   get 'hello/detail' => 'hello#detail'
+  get 'hello/javascript' => 'hello#javascript'
   
   resources :maps
   resources :tags, :only => [:destroy]
@@ -29,6 +30,7 @@ Rails.application.routes.draw do
   get 'picture/liked' => 'pictures#liked'
   get 'picture/viewed' => 'pictures#viewed'
   get 'picture/commented' => 'pictures#commented'
+  get 'picture/rated' => 'pictures#rated'
 
   resources :pictures do
     resources :comments, only: [:create, :destroy]

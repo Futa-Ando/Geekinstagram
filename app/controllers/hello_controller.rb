@@ -6,4 +6,7 @@ class HelloController < ApplicationController
     def detail
     end
 
+    def javascript
+    end
+
 end

@@ -1,0 +1,28 @@
+<div>
+    <h2 id="display">0</h2>
+</div>
+<button id="plus-button">+1</button>
+<button id="minus-button">-1</button>
+<button id="multiple-button">×2</button>
+
+<script>
+    const display = document.getElementById("display")
+    const plusButton = document.getElementById("plus-button")
+    const minusButton = document.getElementById("minus-button")
+    const multipleButton = document.getElementById("multiple-button")
+
+    let count = 0
+
+    plusButton.onclick = function(){
+        count += 1
+        display.textContent = count
+    }
+    minusButton.onclick = function(){
+        count -= 1
+        display.textContent = count
+    }
+    multipleButton.onclick = function(){
+        count = count*2
+        display.textContent = count
+    }
+</script>
